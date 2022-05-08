@@ -19,11 +19,9 @@ composer.phar
 *.sqlite3-journal
 
 # Environment files
-.env
 .env.*
 
 # Make sure we keep the example configurations
-!.env.example
 !.env.example.php
 
 # Testing
