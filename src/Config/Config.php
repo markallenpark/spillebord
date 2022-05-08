@@ -12,32 +12,32 @@ class Config
     private array $data = [];
 
     /**
-     * @var array|string[] Paths to configuration files.
+     * @var string Paths to configuration files.
      */
-    private array $paths = [
-        'default' => PROJECT_ROOT . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR,
-        'local' => PROJECT_ROOT . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . LOCAL_ENV . DIRECTORY_SEPARATOR
-    ];
+    private string $path = PROJECT_ROOT . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR;
 
     /**
      * Load configuration data from config file.
      *
-     * @param string $name  Configuration name. ( Will be used as the base key for related config items. )
+     * @param string $name      Configuration name. ( Will be used as the base key for related config items. )
+     * @param bool   $overwrite Overwrite default values with local configuration if true.
      * @return void
      */
-    public function loadConfigFile(string $name) : void
+    public function loadConfigFile(string $name, bool $overwrite = false) : void
     {
-        $defaultConfigFile = $this->paths['default'] . $name . '.php';
-        $localConfigFile   = $this->paths['local'] . $name . '.php';
+        $defaultConfigFile = $this->path . $name . '.php';
+        $localConfigFile   = $this->path . $name . '.' . LOCAL_ENV . '.php';
 
         $data = $this->data[$name] ?? [];
 
+        // Load default values
         if (file_exists($defaultConfigFile)) {
             $data = array_merge(require $defaultConfigFile, $data);
         }
 
+        // Load local overrides
         if (file_exists($localConfigFile)) {
-            $data = array_merge(require $localConfigFile, $data);
+            $data = (! $overwrite) ? array_merge(require $localConfigFile, $data) : require $localConfigFile;
         }
 
         $this->data[$name] = $data;
