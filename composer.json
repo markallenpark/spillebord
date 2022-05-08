@@ -16,10 +16,11 @@
     ],
     "require": {
         "php": "^8.1",
-        "slim/slim": "4.*",
+        "dflydev/dot-access-data": "^3.0",
         "nyholm/psr7": "^1.5",
         "nyholm/psr7-server": "^1.0",
-        "php-di/php-di": "^6.4"
+        "php-di/php-di": "^6.4",
+        "slim/slim": "4.*"
     },
     "require-dev": {
         "pds/skeleton": "^1.0"
