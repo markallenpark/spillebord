@@ -1,0 +1,18 @@
+{
+    "name": "map/spillebord",
+    "description": "Table Top RPG Campaign Manager",
+    "type": "project",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Map\\Spillebord\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Mark Allen Park",
+            "email": "markallenpark@outlook.com"
+        }
+    ],
+    "require": {}
+}
