@@ -2,6 +2,7 @@
 
 namespace Map\Spillebord\Action;
 
+use Odan\Session\SessionInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Slim\Routing\RouteContext;
@@ -20,9 +21,12 @@ class BaseAction
      * Inject dependencies
      *
      * @param Twig $twig
+     * @param SessionInterface $session
      */
-    public function __construct(protected Twig $twig)
-    {
+    public function __construct(
+        protected Twig $twig,
+        protected SessionInterface $session
+    ) {
         // Intentionally blank
     }
 
