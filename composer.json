@@ -16,6 +16,8 @@
     ],
     "require": {
         "php": "^8.1",
+        "ext-json": "*",
+        "ext-mbstring": "*",
         "dflydev/dot-access-data": "^3.0",
         "nyholm/psr7": "^1.5",
         "nyholm/psr7-server": "^1.0",

@@ -14,7 +14,32 @@ class Config
     /**
      * @var string Paths to configuration files.
      */
-    private string $path = PROJECT_ROOT . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR;
+    private string $path;
+
+    /**
+     * The constructor
+     *
+     * @param string|null $config_path
+     */
+    public function __construct(string $config_path = null)
+    {
+        $this->data['root'] = PROJECT_ROOT;
+        $this->data['public'] = WWW_ROOT;
+        $this->data['local'] = [
+            'environment' => LOCAL_ENV
+        ];
+
+        if ($config_path !== null) {
+
+            if (mb_substr(string: $config_path, start: -1) != DIRECTORY_SEPARATOR) {
+                $config_path = $config_path . DIRECTORY_SEPARATOR;
+            }
+
+            $this->path = $config_path;
+        } else {
+            $this->path = PROJECT_ROOT . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR;
+        }
+    }
 
     /**
      * Load configuration data from config file.
@@ -46,13 +71,20 @@ class Config
     /**
      * Retrieve a configuration value from configuration data.
      *
-     * @param string $key           Key of data to retrieve.
-     * @param mixed|null $default   Default value if value does not exist.
+     * Uses dot-notation.
+     *
+     * @param string|null $key      Key of data to retrieve.
+     * @param mixed|null  $default  Default value if value does not exist.
      * @return mixed                Value set to $key, or $default if $key is not set.
      */
-    public function get(string $key, mixed $default = null) : mixed
+    public function get(string $key = null, mixed $default = null) : mixed
     {
         $data = new Data(data: $this->data);
+
+        // If no key is specified, return entire array
+        if ($key === null) {
+            return $this->data;
+        }
 
         return $data->get(key: $key, default: $default);
     }

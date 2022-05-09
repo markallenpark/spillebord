@@ -172,8 +172,6 @@ nbdist/
 
 ##### Eclipse
 .metadata
-bin/
-tmp/
 *.tmp
 *.bak
 *.swp
