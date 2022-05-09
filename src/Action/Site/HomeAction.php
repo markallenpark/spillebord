@@ -8,13 +8,8 @@ use Psr\Http\Message\ServerRequestInterface;
 
 class HomeAction extends BaseAction
 {
-    public function __invoke(
-        ServerRequestInterface $request,
-        ResponseInterface $response,
-        array $args
-    ) : ResponseInterface
+    protected function process(): ResponseInterface
     {
-        $response->getBody()->write(string: 'Hello, world');
-        return $response;
+        return $this->returnView(template: 'app.twig');
     }
 }

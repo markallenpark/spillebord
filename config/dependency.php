@@ -5,6 +5,8 @@ use Psr\Http\Message\ResponseFactoryInterface;
 use Selective\BasePath\BasePathMiddleware;
 use Slim\App;
 use Slim\Middleware\ErrorMiddleware;
+use Slim\Views\Twig;
+use Slim\Views\TwigMiddleware;
 
 return [
     'dependencies' => [
@@ -13,5 +15,7 @@ return [
         ErrorMiddleware::class,
         ResponseFactoryInterface::class,
         BasePathMiddleware::class,
+        Twig::class,
+        TwigMiddleware::class
     ]
 ];

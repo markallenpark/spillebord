@@ -23,7 +23,8 @@
         "nyholm/psr7-server": "^1.0",
         "php-di/php-di": "^6.4",
         "selective/basepath": "^2.1",
-        "slim/slim": "4.*"
+        "slim/slim": "4.*",
+        "slim/twig-view": "^3.3"
     },
     "require-dev": {
         "pds/skeleton": "^1.0"

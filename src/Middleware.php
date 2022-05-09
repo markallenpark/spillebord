@@ -4,13 +4,15 @@ namespace Map\Spillebord;
 
 use Slim\App;
 use Slim\Middleware\ErrorMiddleware;
+use Slim\Views\TwigMiddleware;
 
 class Middleware
 {
     public static function load(App $middleware) : void
     {
         $middleware->addBodyParsingMiddleware();
+        $middleware->add(middleware: TwigMiddleware::class);
         $middleware->addRoutingMiddleware();
-        $middleware->add(ErrorMiddleware::class);
+        $middleware->add(middleware: ErrorMiddleware::class);
     }
 }
