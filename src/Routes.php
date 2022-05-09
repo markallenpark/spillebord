@@ -2,20 +2,13 @@
 
 namespace Map\Spillebord;
 
-use Psr\Http\Message\ResponseInterface;
-use Psr\Http\Message\ServerRequestInterface;
+use Map\Spillebord\Action\Site\HomeAction;
 use Slim\App;
 
 class Routes
 {
     public static function create(App $route) : void
     {
-        $route->get('/', function (
-            ServerRequestInterface $request,
-            ResponseInterface $response
-        ) {
-            $response->getBody()->write('Hello, world');
-            return $response;
-        });
+        $route->get(pattern: '/', callable: HomeAction::class)->setName(name: 'home');
     }
 }
