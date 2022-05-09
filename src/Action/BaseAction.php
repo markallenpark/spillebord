@@ -4,6 +4,7 @@ namespace Map\Spillebord\Action;
 
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use Slim\Routing\RouteContext;
 use Slim\Views\Twig;
 use Twig\Error\LoaderError;
 use Twig\Error\RuntimeError;
@@ -46,6 +47,24 @@ class BaseAction
     }
 
     /**
+     * Get information about current route
+     *
+     * @return array
+     */
+    protected function routeInfo() : array
+    {
+        $routeContext = RouteContext::fromRequest($this->request);
+        $route = $routeContext->getRoute();
+
+        return [
+            'name' => $route->getName(),
+            'groups' => $route->getGroups(),
+            'methods' => $route->getMethods(),
+            'arguments' => $route->getArguments(),
+        ];
+    }
+
+    /**
      * Process data before returning response.
      *
      * @return ResponseInterface
@@ -71,6 +90,8 @@ class BaseAction
         string $template,
         array $viewData = []) : ResponseInterface
     {
+        $viewData['route'] = $this->routeInfo();
+
         return $this->twig->render(
             response: $this->response,
             template: $template,
