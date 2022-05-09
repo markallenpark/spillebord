@@ -9,7 +9,7 @@ const PROJECT_ROOT = __DIR__;
 if (file_exists($composer = __DIR__ . '/vendor/autoload.php')) {
     require $composer;
 } else {
-    http_response_code(response_code: 500);
+    header(header: "HTTP/1.1 500 Internal Server Error");
     $data = require __DIR__ . '/resources/templates/static/system/errors/autoloader.php';
     exit($data);
 }
