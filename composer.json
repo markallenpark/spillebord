@@ -19,12 +19,14 @@
         "ext-json": "*",
         "ext-mbstring": "*",
         "dflydev/dot-access-data": "^3.0",
+        "monolog/monolog": "^2.5",
         "nyholm/psr7": "^1.5",
         "nyholm/psr7-server": "^1.0",
         "php-di/php-di": "^6.4",
         "selective/basepath": "^2.1",
         "slim/slim": "4.*",
-        "slim/twig-view": "^3.3"
+        "slim/twig-view": "^3.3",
+        "symfony/polyfill-uuid": "^1.25"
     },
     "require-dev": {
         "pds/skeleton": "^1.0"

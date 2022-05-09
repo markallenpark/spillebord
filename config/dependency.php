@@ -1,6 +1,7 @@
 <?php declare(strict_types=1);
 
 use Map\Spillebord\Config\Config;
+use Map\Spillebord\Factory\LoggerFactory;
 use Psr\Http\Message\ResponseFactoryInterface;
 use Selective\BasePath\BasePathMiddleware;
 use Slim\App;
@@ -10,12 +11,13 @@ use Slim\Views\TwigMiddleware;
 
 return [
     'dependencies' => [
-        Config::class,
         App::class,
-        ErrorMiddleware::class,
-        ResponseFactoryInterface::class,
         BasePathMiddleware::class,
+        Config::class,
+        ErrorMiddleware::class,
+        LoggerFactory::class,
+        ResponseFactoryInterface::class,
         Twig::class,
-        TwigMiddleware::class
+        TwigMiddleware::class,
     ]
 ];
