@@ -3,16 +3,15 @@
 namespace Map\Spillebord\Config\Dependency;
 
 use Closure;
+use Nyholm\Psr7\Factory\Psr17Factory;
 use Psr\Container\ContainerInterface;
-use Slim\Factory\AppFactory;
 
-class AppDependency
+class ResponseFactoryInterfaceDependency
 {
     public function create() : Closure
     {
         return function (ContainerInterface $container) {
-            AppFactory::setContainer(container: $container);
-            return AppFactory::create();
+            return $container->get(Psr17Factory::class);
         };
     }
 }
