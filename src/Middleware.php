@@ -2,6 +2,7 @@
 
 namespace Map\Spillebord;
 
+use Map\Spillebord\Middleware\ErrorHandlerMiddleware;
 use Map\Spillebord\Middleware\HttpExceptionMiddleware;
 use Slim\App;
 use Slim\Middleware\ErrorMiddleware;
@@ -15,6 +16,7 @@ class Middleware
         $middleware->add(middleware: TwigMiddleware::class);
         $middleware->addRoutingMiddleware();
         $middleware->add(middleware: HttpExceptionMiddleware::class);
+        $middleware->add(middleware: ErrorHandlerMiddleware::class);
         $middleware->add(middleware: ErrorMiddleware::class);
     }
 }
