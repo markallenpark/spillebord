@@ -2,6 +2,7 @@
 
 use Map\Spillebord\Config\Config;
 use Psr\Http\Message\ResponseFactoryInterface;
+use Selective\BasePath\BasePathMiddleware;
 use Slim\App;
 use Slim\Middleware\ErrorMiddleware;
 
@@ -10,6 +11,7 @@ return [
         Config::class,
         App::class,
         ErrorMiddleware::class,
-        ResponseFactoryInterface::class
+        ResponseFactoryInterface::class,
+        BasePathMiddleware::class,
     ]
 ];
