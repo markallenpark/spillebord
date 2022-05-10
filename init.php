@@ -38,6 +38,7 @@ switch (LOCAL_ENV) {
 // Set sane timezone for backend
 date_default_timezone_set(timezoneId: 'UTC');
 
-// Start application
+// Create the application
 $spillebord = new Spillebord();
-$spillebord->run();
+return $spillebord;
+

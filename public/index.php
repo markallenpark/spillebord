@@ -4,4 +4,4 @@
 const WWW_ROOT = __DIR__;
 
 // Initialize the application.
-require dirname(__DIR__) . '/init.php';
+(require dirname(__DIR__) . '/init.php')->run();

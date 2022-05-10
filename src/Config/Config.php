@@ -24,7 +24,6 @@ class Config
     public function __construct(string $config_path = null)
     {
         $this->data['root'] = PROJECT_ROOT;
-        $this->data['public'] = WWW_ROOT;
         $this->data['local'] = [
             'environment' => LOCAL_ENV
         ];

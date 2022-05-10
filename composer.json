@@ -27,7 +27,8 @@
         "selective/basepath": "^2.1",
         "slim/slim": "4.*",
         "slim/twig-view": "^3.3",
-        "symfony/polyfill-uuid": "^1.25"
+        "symfony/polyfill-uuid": "^1.25",
+      "ext-pdo": "*"
     },
     "require-dev": {
         "pds/skeleton": "^1.0"

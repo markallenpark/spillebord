@@ -23,5 +23,6 @@ return [
         SessionMiddleware::class,
         Twig::class,
         TwigMiddleware::class,
+        PDO::class,
     ]
 ];
