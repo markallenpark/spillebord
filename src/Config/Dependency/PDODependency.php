@@ -3,7 +3,9 @@
 namespace Map\Spillebord\Config\Dependency;
 
 use Closure;
+use Exception;
 use Map\Spillebord\Config\Config;
+use Map\Spillebord\Factory\LoggerFactory;
 use PDO;
 use Psr\Container\ContainerInterface;
 
@@ -14,6 +16,10 @@ class PDODependency
         return function (ContainerInterface $container) {
             $config = $container->get(Config::class);
             $config->loadConfigFile('db');
+            $loggerFactory = $config->get(LoggerFactory::class);
+            $logger = $loggerFactory
+                ->addFileHandler()
+                ->createLogger('mysql');
 
             // Get our configuration
             $socket = $config->get('db.socket');
@@ -39,13 +45,21 @@ class PDODependency
                 PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8mb4 COLLATE utf8mb4_unicode_ci"
             ];
 
-            // Open connection
-            return new PDO(
-                $dsn,
-                $user,
-                $pass,
-                $options
-            );
+
+            try {
+                // Open connection
+                $pdo = new PDO(
+                    $dsn,
+                    $user,
+                    $pass,
+                    $options
+                );
+            } catch (Exception $exception) {
+                $logger->notice('Unable to connect to database.');
+                throw new Exception(message: 'Unable to connect to database.');
+            }
+
+            return $pdo;
         };
     }
 }
